@@ -2,6 +2,8 @@
 
 **Upload Requirement**: Upload a screenshot of your deployed GiftLink application running in the cloud or local container environment.
 
+**Generated Screenshot File**: `submission/12-deployed-application.png` (ready for direct upload)
+
 ### Steps to produce the screenshot:
 1. Ensure your application is running either via:
    - IBM Code Engine / Cloud Run / Kubernetes

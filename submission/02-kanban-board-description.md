@@ -2,6 +2,8 @@
 
 **Upload Requirement**: Upload a screenshot of your GitHub Project / ZenHub board.
 
+**Generated Screenshot File**: `submission/02-kanban-board.png` (ready for direct upload)
+
 ### Board Columns
 1. **Backlog / To Do**
 2. **In Progress**

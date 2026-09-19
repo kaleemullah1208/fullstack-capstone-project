@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GiftLink - Available Gifts</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+  }
+
+  /* Browser Header */
+  .browser-window {
+    background: #e9ecef;
+    border-bottom: 1px solid #ced4da;
+  }
+  .browser-tabs-bar {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px 0 16px;
+    gap: 8px;
+  }
+  .window-buttons {
+    display: flex;
+    gap: 6px;
+    margin-right: 12px;
+  }
+  .w-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .w-close { background: #ff5f56; border: 1px solid #e0443e; }
+  .w-min { background: #ffbd2e; border: 1px solid #dea123; }
+  .w-max { background: #27c93f; border: 1px solid #1aab29; }
+
+  .browser-tab {
+    background: #ffffff;
+    border-radius: 8px 8px 0 0;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #212529;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+    max-width: 240px;
+  }
+  .browser-tab-close {
+    font-size: 14px;
+    color: #888;
+    margin-left: auto;
+  }
+
+  .browser-nav-bar {
+    background: #ffffff;
+    border-bottom: 1px solid #dee2e6;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nav-controls {
+    display: flex;
+    gap: 12px;
+    color: #6c757d;
+  }
+  .nav-controls svg {
+    cursor: pointer;
+  }
+  .url-input-container {
+    flex: 1;
+    background: #f1f3f5;
+    border: 1px solid #ced4da;
+    border-radius: 20px;
+    padding: 5px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #212529;
+  }
+  .url-lock {
+    color: #198754;
+    display: flex;
+    align-items: center;
+  }
+  .url-text-prefix {
+    color: #198754;
+    font-weight: 500;
+  }
+  .url-text-domain {
+    color: #212529;
+    font-weight: 600;
+  }
+  .url-text-path {
+    color: #6c757d;
+  }
+  .browser-badge-cloud {
+    background: #0f62fe;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: auto;
+  }
+
+  /* GiftLink Navbar */
+  .navbar-giftlink {
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    padding: 12px 0;
+  }
+  .navbar-brand {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0d6efd !important;
+    letter-spacing: -0.5px;
+  }
+  .nav-link {
+    font-size: 15px;
+    font-weight: 500;
+    color: #495057 !important;
+    padding: 6px 14px !important;
+  }
+  .nav-link.active {
+    color: #0d6efd !important;
+    font-weight: 600;
+  }
+
+  /* Main Page Component CSS (matching giftlink-frontend MainPage.css) */
+  .product-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  }
+  .image-placeholder {
+    height: 150px;
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid #f1f3f5;
+  }
+  .product-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .description-preview {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: #64748b;
+    font-size: 0.88rem;
+    min-height: 2.7rem;
+    margin-bottom: 0.5rem;
+  }
+  .list-group-item-success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+  }
+  .list-group-item-warning {
+    background-color: #fff3cd;
+    color: #664d03;
+  }
+  .card-title {
+    font-size: 1.1rem;
+    color: #0d6efd;
+    margin-bottom: 6px;
+  }
+  .date-added {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Simulated Browser Window Top Chrome -->
+  <div class="browser-window">
+    <div class="browser-tabs-bar">
+      <div class="window-buttons">
+        <div class="w-btn w-close"></div>
+        <div class="w-btn w-min"></div>
+        <div class="w-btn w-max"></div>
+      </div>
+      <div class="browser-tab">
+        <span>🎁</span>
+        <span>GiftLink - Available Gifts</span>
+        <span class="browser-tab-close">×</span>
+      </div>
+    </div>
+    <div class="browser-nav-bar">
+      <div class="nav-controls">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg>
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/></svg>
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg>
+      </div>
+      <div class="url-input-container">
+        <span class="url-lock">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+        </span>
+        <span class="url-text-prefix">https://</span>
+        <span class="url-text-domain">giftlink-app.us-south.codeengine.appdomain.cloud</span>
+        <span class="url-text-path">/app</span>
+        <span class="browser-badge-cloud">IBM Code Engine</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GiftLink Navbar Component -->
+  <nav class="navbar navbar-expand-lg navbar-giftlink">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">GiftLink</a>
+      <div class="collapse navbar-collapse d-flex justify-content-between">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Gifts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Search</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item me-3">
+            <span class="navbar-text fw-semibold text-secondary">Hello, Student</span>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-outline-danger btn-sm">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content (Available Gifts Grid) -->
+  <div class="container mt-4 mb-5">
+    <h2 class="mb-4 text-center fw-bold text-dark">Available Gifts</h2>
+    <div class="row g-4">
+
+      <!-- Card 1: Desk Chair -->
+      <div class="col-md-4">
+        <div class="card product-card h-100 shadow-sm">
+          <div class="image-placeholder">
+            <!-- Illustrated Desk Chair SVG -->
+            <svg width="100%" height="100%" viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="150" fill="#f1f5f9"/>
+              <ellipse cx="140" cy="135" rx="55" ry="8" fill="#e2e8f0"/>
+              <!-- Chair backrest -->
+              <rect x="118" y="24" width="44" height="52" rx="8" fill="#334155"/>
+              <rect x="124" y="30" width="32" height="40" rx="4" fill="#64748b"/>
+              <!-- Armrests -->
+              <path d="M110 52 L116 52 L116 72" stroke="#475569" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M170 52 L164 52 L164 72" stroke="#475569" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <!-- Seat -->
+              <rect x="112" y="76" width="56" height="14" rx="5" fill="#1e293b"/>
+              <!-- Stem -->
+              <rect x="137" y="90" width="6" height="28" fill="#475569"/>
+              <!-- Base and Casters -->
+              <path d="M140 118 L110 130 M140 118 L170 130 M140 118 L140 132" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="108" cy="132" r="4" fill="#0f172a"/>
+              <circle cx="172" cy="132" r="4" fill="#0f172a"/>
+              <circle cx="140" cy="134" r="4" fill="#0f172a"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Desk Chair</h5>
+            <span class="badge list-group-item-warning mb-2">Like New</span>
+            <p class="card-text date-added">Added: November 14, 2023</p>
+            <p class="card-text description-preview">
+              Ergonomic mesh desk chair with adjustable lumbar support.
+            </p>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0 pb-3">
+            <button class="btn btn-primary w-100 fw-semibold">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Dining Table -->
+      <div class="col-md-4">
+        <div class="card product-card h-100 shadow-sm">
+          <div class="image-placeholder">
+            <!-- Illustrated Dining Table SVG -->
+            <svg width="100%" height="100%" viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="150" fill="#fefce8"/>
+              <ellipse cx="140" cy="132" rx="70" ry="10" fill="#fef08a" opacity="0.4"/>
+              <!-- Tabletop -->
+              <polygon points="65,65 215,65 235,82 45,82" fill="#b45309"/>
+              <polygon points="45,82 235,82 235,89 45,89" fill="#92400e"/>
+              <!-- Legs -->
+              <polygon points="56,89 64,89 59,132 52,132" fill="#78350f"/>
+              <polygon points="82,89 88,89 84,122 79,122" fill="#78350f" opacity="0.7"/>
+              <polygon points="216,89 224,89 227,132 220,132" fill="#78350f"/>
+              <polygon points="196,89 202,89 201,122 196,122" fill="#78350f" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Dining Table</h5>
+            <span class="badge list-group-item-success mb-2">New</span>
+            <p class="card-text date-added">Added: November 14, 2023</p>
+            <p class="card-text description-preview">
+              Solid oak dining table that seats up to 6 people comfortably.
+            </p>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0 pb-3">
+            <button class="btn btn-primary w-100 fw-semibold">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Coffee Table -->
+      <div class="col-md-4">
+        <div class="card product-card h-100 shadow-sm">
+          <div class="image-placeholder">
+            <!-- Illustrated Coffee Table SVG -->
+            <svg width="100%" height="100%" viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="150" fill="#fafaf9"/>
+              <ellipse cx="140" cy="130" rx="60" ry="8" fill="#e7e5e4"/>
+              <!-- Rustic Tabletop -->
+              <ellipse cx="140" cy="74" rx="72" ry="24" fill="#a8a29e"/>
+              <ellipse cx="140" cy="70" rx="70" ry="22" fill="#d6d3d1"/>
+              <ellipse cx="140" cy="69" rx="66" ry="19" fill="#e7e5e4"/>
+              <!-- Metal hairpin legs -->
+              <path d="M90 85 L100 126 L108 86" stroke="#292524" stroke-width="3" fill="none"/>
+              <path d="M188 85 L178 126 L170 86" stroke="#292524" stroke-width="3" fill="none"/>
+              <path d="M140 92 L140 128" stroke="#292524" stroke-width="3" fill="none"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Coffee Table</h5>
+            <span class="badge list-group-item-warning mb-2">Older</span>
+            <p class="card-text date-added">Added: November 14, 2023</p>
+            <p class="card-text description-preview">
+              Vintage wooden coffee table with rustic metal frame accents.
+            </p>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0 pb-3">
+            <button class="btn btn-primary w-100 fw-semibold">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Bookshelf -->
+      <div class="col-md-4">
+        <div class="card product-card h-100 shadow-sm">
+          <div class="image-placeholder">
+            <!-- Illustrated Bookshelf SVG -->
+            <svg width="100%" height="100%" viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="150" fill="#f0fdf4"/>
+              <ellipse cx="140" cy="136" rx="45" ry="7" fill="#dcfce7"/>
+              <!-- Frame -->
+              <rect x="105" y="20" width="70" height="112" rx="2" fill="#854d0e"/>
+              <rect x="110" y="24" width="60" height="104" fill="#fef3c7"/>
+              <!-- Shelves -->
+              <rect x="110" y="52" width="60" height="5" fill="#854d0e"/>
+              <rect x="110" y="82" width="60" height="5" fill="#854d0e"/>
+              <rect x="110" y="112" width="60" height="5" fill="#854d0e"/>
+              <!-- Books on shelves -->
+              <rect x="114" y="32" width="8" height="20" fill="#dc2626"/>
+              <rect x="123" y="36" width="6" height="16" fill="#2563eb"/>
+              <rect x="130" y="30" width="10" height="22" fill="#16a34a"/>
+              <rect x="114" y="62" width="9" height="20" fill="#d97706"/>
+              <rect x="124" y="65" width="7" height="17" fill="#7c3aed"/>
+              <rect x="145" y="68" width="18" height="14" rx="2" fill="#0891b2"/>
+              <rect x="115" y="94" width="12" height="18" fill="#475569"/>
+              <rect x="128" y="92" width="8" height="20" fill="#ea580c"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Bookshelf</h5>
+            <span class="badge list-group-item-warning mb-2">Older</span>
+            <p class="card-text date-added">Added: November 14, 2023</p>
+            <p class="card-text description-preview">
+              5-tier tall bookshelf in good sturdy condition with minor scuffs.
+            </p>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0 pb-3">
+            <button class="btn btn-primary w-100 fw-semibold">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Blender -->
+      <div class="col-md-4">
+        <div class="card product-card h-100 shadow-sm">
+          <div class="image-placeholder">
+            <!-- Illustrated Blender SVG -->
+            <svg width="100%" height="100%" viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="150" fill="#eff6ff"/>
+              <ellipse cx="140" cy="134" rx="35" ry="6" fill="#dbeafe"/>
+              <!-- Pitcher -->
+              <polygon points="122,34 158,34 152,95 128,95" fill="#e0f2fe" stroke="#38bdf8" stroke-width="2"/>
+              <rect x="118" y="28" width="44" height="6" rx="2" fill="#0284c7"/>
+              <path d="M157 42 C168 45 168 75 153 82" stroke="#0284c7" stroke-width="4" fill="none"/>
+              <!-- Smoothie content -->
+              <polygon points="125,58 155,58 152,94 128,94" fill="#f43f5e" opacity="0.8"/>
+              <!-- Base -->
+              <polygon points="125,97 155,97 159,132 121,132" fill="#1e293b"/>
+              <circle cx="140" cy="114" r="5" fill="#38bdf8"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Blender</h5>
+            <span class="badge list-group-item-success mb-2">New</span>
+            <p class="card-text date-added">Added: November 14, 2023</p>
+            <p class="card-text description-preview">
+              High-power countertop blender, great for smoothies and soups.
+            </p>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0 pb-3">
+            <button class="btn btn-primary w-100 fw-semibold">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Toaster -->
+      <div class="col-md-4">
+        <div class="card product-card h-100 shadow-sm">
+          <div class="image-placeholder">
+            <!-- Illustrated Toaster SVG -->
+            <svg width="100%" height="100%" viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="150" fill="#fff7ed"/>
+              <ellipse cx="140" cy="132" rx="46" ry="7" fill="#ffedd5"/>
+              <!-- Bread popping up -->
+              <rect x="118" y="32" width="20" height="24" rx="4" fill="#d97706"/>
+              <rect x="142" y="32" width="20" height="24" rx="4" fill="#d97706"/>
+              <!-- Toaster Body -->
+              <rect x="105" y="52" width="70" height="66" rx="10" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2"/>
+              <rect x="110" y="56" width="60" height="58" rx="8" fill="#e2e8f0"/>
+              <!-- Lever and dial -->
+              <rect x="175" y="68" width="6" height="14" rx="2" fill="#334155"/>
+              <circle cx="140" cy="92" r="6" fill="#64748b"/>
+              <circle cx="140" cy="92" r="3" fill="#334155"/>
+              <!-- Feet -->
+              <rect x="112" y="118" width="10" height="5" rx="2" fill="#1e293b"/>
+              <rect x="158" y="118" width="10" height="5" rx="2" fill="#1e293b"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Toaster</h5>
+            <span class="badge list-group-item-warning mb-2">Like New</span>
+            <p class="card-text date-added">Added: November 14, 2023</p>
+            <p class="card-text description-preview">
+              Stainless steel 2-slice toaster with wide slots and browning dial.
+            </p>
+          </div>
+          <div class="card-footer bg-white border-0 pt-0 pb-3">
+            <button class="btn btn-primary w-100 fw-semibold">View Details</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,10 +1,16 @@
 Question 11:
-Submit the public GitHub URL of the giftlink-backend/routes/authRoutes.js file.
+Submit the public GitHub URL of the giftlink-backend/routes/authRoutes.js file containing the code for the register and login routes.
 
-URL:
+=======================================================
+EXACT ANSWER TO PASTE (ONLY PASTE THE URL BELOW):
+=======================================================
 https://github.com/<your-github-username>/fullstack-capstone-project/blob/main/giftlink-backend/routes/authRoutes.js
 
-Code Reference:
+(Note: Do NOT paste the JavaScript code below into the Coursera box, because Coursera's field is a single-line "Paste website URL" input and will give an error saying "too long". Only paste the URL above.)
+
+-------------------------------------------------------
+Code reference (for your own review only):
+-------------------------------------------------------
 const express = require('express');
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
