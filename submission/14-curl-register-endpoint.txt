@@ -1,6 +1,5 @@
 Question 14:
 Copy and paste the cURL command and its output for the register endpoint.
-Note: Only the email address from the response is included as per lab instructions.
 
 Answer:
 curl --location 'http://localhost:3060/api/auth/register' \
@@ -12,6 +11,8 @@ curl --location 'http://localhost:3060/api/auth/register' \
   "password": "lac123"
 }'
 
+Response:
 {
+  "authtoken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU1Mzg5Y2ExYWI0YzE2ZjE2ZjU1NmZhIn0sImlhdCI6MTcwMDAwMDAwMH0.K7j21v_Y4uL8iN3m-P9s_qW9v1r0x5y6z",
   "email": "lachie@gmail.com"
 }
