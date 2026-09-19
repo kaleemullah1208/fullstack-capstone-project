@@ -2,16 +2,14 @@ Question 3:
 Provide the command or output showing that gifts have been imported and verified in MongoDB.
 
 Answer:
-$ mongosh giftsdb --eval "db.gifts.find({}, {name: 1, category: 1, condition: 1, _id: 0})"
-[
-  { name: 'Desk Chair', category: 'Office', condition: 'Like New' },
-  { name: 'Dining Table', category: 'Living', condition: 'New' },
-  { name: 'Coffee Table', category: 'Living', condition: 'Older' },
-  { name: 'Bookshelf', category: 'Office', condition: 'Older' },
-  { name: 'Blender', category: 'Kitchen', condition: 'New' },
-  { name: 'Toaster', category: 'Kitchen', condition: 'Like New' },
-  { name: 'Queen Bed Frame', category: 'Bedroom', condition: 'Older' },
-  { name: 'Nightstand', category: 'Bedroom', condition: 'Like New' },
-  { name: 'Bath Towels Set', category: 'Bathroom', condition: 'New' },
-  { name: 'Shower Curtain', category: 'Bathroom', condition: 'New' }
-]
+theia@theialabs-kaleemullah12:/home/project/giftlink-backend/util/import-mongo$ npm start
+
+> import-mongo@1.0.0 start
+> node index.js
+
+Connected to MongoDB successfully at mongodb://localhost:27017
+Successfully seeded 16 gifts into giftsdb
+16 documents were inserted into the gifts collection
+
+theia@theialabs-kaleemullah12:/home/project/giftlink-backend/util/import-mongo$ mongosh giftsdb --eval "db.gifts.countDocuments()"
+16

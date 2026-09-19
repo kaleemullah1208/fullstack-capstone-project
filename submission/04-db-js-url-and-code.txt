@@ -2,7 +2,7 @@ Question 4:
 Submit the public GitHub URL of the giftlink-backend/models/db.js file.
 
 URL:
-https://github.com/<your-github-username>/fullstack-capstone-project/blob/main/giftlink-backend/models/db.js
+https://github.com/kaleemullah1208/fullstack-capstone-project/blob/main/giftlink-backend/models/db.js
 
 Code Reference:
 require('dotenv').config();

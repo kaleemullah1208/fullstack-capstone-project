@@ -2,7 +2,7 @@ Question 7:
 Submit the public GitHub URL of the sentiment/index.js file.
 
 URL:
-https://github.com/<your-github-username>/fullstack-capstone-project/blob/main/sentiment/index.js
+https://github.com/kaleemullah1208/fullstack-capstone-project/blob/main/sentiment/index.js
 
 Code Reference:
 require('dotenv').config();

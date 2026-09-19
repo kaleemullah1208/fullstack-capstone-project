@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issues · kaleemullah1208/fullstack-capstone-project · GitHub</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    background-color: #f6f8fa;
+    color: #1f2328;
+    line-height: 1.5;
+  }
+
+  /* Browser Header */
+  .browser-bar {
+    background: #eef1f5;
+    border-bottom: 1px solid #d0d7de;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .window-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .dot-red { background: #ff5f56; border: 1px solid #e0443e; }
+  .dot-yellow { background: #ffbd2e; border: 1px solid #dea123; }
+  .dot-green { background: #27c93f; border: 1px solid #1aab29; }
+  .address-bar {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 4px 14px;
+    font-size: 13px;
+    color: #24292f;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .address-bar svg {
+    fill: #2da44e;
+  }
+
+  /* GitHub Global Nav */
+  .gh-header {
+    background-color: #24292f;
+    color: #ffffff;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .gh-logo-group {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .gh-logo {
+    fill: #ffffff;
+  }
+  .repo-path {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .repo-path a {
+    color: #c9d1d9;
+    text-decoration: none;
+  }
+  .repo-path span {
+    color: #8b949e;
+    margin: 0 4px;
+  }
+  .repo-path .repo-name {
+    color: #ffffff;
+    font-weight: 600;
+  }
+  .badge-public {
+    border: 1px solid #7d8590;
+    color: #c9d1d9;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+
+  /* Repo Tabs */
+  .repo-tabs {
+    background: #ffffff;
+    border-bottom: 1px solid #d0d7de;
+    padding: 0 24px;
+    display: flex;
+    gap: 16px;
+  }
+  .tab-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    font-size: 14px;
+    color: #656d76;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+  .tab-item.active {
+    color: #1f2328;
+    font-weight: 600;
+    border-bottom-color: #fd8c73;
+  }
+  .tab-item .badge {
+    background: #afb8c133;
+    padding: 0 6px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* Main Container */
+  .container {
+    max-width: 1240px;
+    margin: 16px auto;
+    padding: 0 20px;
+  }
+
+  /* Filter Subnav */
+  .subnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .search-filter-box {
+    display: flex;
+    flex: 1;
+    max-width: 600px;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  .filter-btn {
+    background: #f6f8fa;
+    border: none;
+    border-right: 1px solid #d0d7de;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #24292f;
+  }
+  .search-input {
+    flex: 1;
+    border: none;
+    padding: 6px 12px;
+    font-size: 13px;
+    outline: none;
+    background: #ffffff;
+    color: #1f2328;
+  }
+  .subnav-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .btn-label {
+    background: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #24292f;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn-new-issue {
+    background: #1f883d;
+    color: #ffffff;
+    border: 1px solid rgba(31,35,40,0.15);
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* Issues Box */
+  .issues-box {
+    background: #ffffff;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+  }
+  .issues-header {
+    background: #f6f8fa;
+    border-bottom: 1px solid #d0d7de;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+  .issues-state-counts {
+    display: flex;
+    gap: 14px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .open-count {
+    color: #1f2328;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .closed-count {
+    color: #656d76;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+  }
+
+  /* Issues List */
+  .issue-row {
+    padding: 10px 16px;
+    border-bottom: 1px solid #d0d7de;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .issue-row:last-child {
+    border-bottom: none;
+  }
+  .issue-icon {
+    margin-top: 3px;
+    color: #1f883d;
+    flex-shrink: 0;
+  }
+  .issue-content {
+    flex: 1;
+  }
+  .issue-title-line {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2328;
+    line-height: 1.4;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .issue-meta {
+    font-size: 12px;
+    color: #656d76;
+    margin-top: 3px;
+  }
+
+  /* Required Labels specifically styled */
+  .badge-label {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    text-transform: lowercase;
+    display: inline-flex;
+    align-items: center;
+  }
+  /* Required: new */
+  .label-new {
+    background-color: #dafbe1;
+    color: #1a7f37;
+    border: 1px solid #4ac26b66;
+  }
+  /* Required: backlog */
+  .label-backlog {
+    background-color: #fbefff;
+    color: #8250df;
+    border: 1px solid #c297ff66;
+  }
+  /* Required: icebox */
+  .label-icebox {
+    background-color: #ddf4ff;
+    color: #0969da;
+    border: 1px solid #54aeff66;
+  }
+  /* Required: technical debt */
+  .label-techdebt {
+    background-color: #ffebe9;
+    color: #cf222e;
+    border: 1px solid #ff818266;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Browser Navigation Bar -->
+  <div class="browser-bar">
+    <div class="window-dots">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+    </div>
+    <div class="address-bar">
+      <svg width="14" height="14" viewBox="0 0 16 16"><path d="M4 4v2h-.5A1.5 1.5 0 0 0 2 7.5v6A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5v-6A1.5 1.5 0 0 0 12.5 6H12V4a4 4 0 0 0-8 0zm6.5 2h-5V4a2.5 2.5 0 0 1 5 0v2z"/></svg>
+      <span>https://github.com/kaleemullah1208/fullstack-capstone-project/issues</span>
+    </div>
+  </div>
+
+  <!-- GitHub Repo Header -->
+  <div class="gh-header">
+    <div class="gh-logo-group">
+      <svg class="gh-logo" height="28" viewBox="0 0 16 16" width="28"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9 1.01 1.25.32.4 1.13 1.18 2.51.86 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+      <div class="repo-path">
+        <a href="#">kaleemullah1208</a><span>/</span><a href="#" class="repo-name">fullstack-capstone-project</a>
+      </div>
+      <span class="badge-public">Public</span>
+    </div>
+  </div>
+
+  <!-- Repository Navigation Tabs -->
+  <div class="repo-tabs">
+    <a href="#" class="tab-item">Code</a>
+    <a href="#" class="tab-item active">Issues <span class="badge">8</span></a>
+    <a href="#" class="tab-item">Pull requests</a>
+    <a href="#" class="tab-item">Actions</a>
+    <a href="#" class="tab-item">Projects</a>
+    <a href="#" class="tab-item">Security</a>
+    <a href="#" class="tab-item">Insights</a>
+  </div>
+
+  <!-- Main Content Container -->
+  <div class="container">
+    <div class="subnav">
+      <div class="search-filter-box">
+        <button class="filter-btn">Filters ▾</button>
+        <input type="text" class="search-input" value="is:issue is:open " readonly>
+      </div>
+      <div class="subnav-actions">
+        <button class="btn-label">🏷️ Labels <span class="badge">4</span></button>
+        <button class="btn-label">🎯 Milestones</button>
+        <button class="btn-new-issue">New issue</button>
+      </div>
+    </div>
+
+    <!-- Issues Box -->
+    <div class="issues-box">
+      <div class="issues-header">
+        <div class="issues-state-counts">
+          <span class="open-count">
+            <svg width="16" height="16" fill="#1f883d" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/></svg>
+            8 Open
+          </span>
+          <span class="closed-count">
+            <svg width="16" height="16" fill="#656d76" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>
+            4 Closed
+          </span>
+        </div>
+        <div style="font-size: 13px; color: #656d76;">
+          Sort: Newest ▾
+        </div>
+      </div>
+
+      <!-- Issue 1 -->
+      <div class="issue-row">
+        <svg class="issue-icon" width="16" height="16" viewBox="0 0 16 16"><path fill="#1f883d" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="#1f883d" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/></svg>
+        <div class="issue-content">
+          <div class="issue-title-line">
+            <span>As a user, I want to view all listed gifts on the main page so that I can browse available items.</span>
+            <span class="badge-label label-new">new</span>
+            <span class="badge-label label-backlog">backlog</span>
+          </div>
+          <div class="issue-meta">#1 opened 3 hours ago by kaleemullah1208</div>
+        </div>
+      </div>
+
+      <!-- Issue 2 -->
+      <div class="issue-row">
+        <svg class="issue-icon" width="16" height="16" viewBox="0 0 16 16"><path fill="#1f883d" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="#1f883d" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/></svg>
+        <div class="issue-content">
+          <div class="issue-title-line">
+            <span>As a user, I want to filter gifts by name, category, condition, and age so that I can easily find what I need.</span>
+            <span class="badge-label label-new">new</span>
+            <span class="badge-label label-backlog">backlog</span>
+          </div>
+          <div class="issue-meta">#2 opened 3 hours ago by kaleemullah1208</div>
+        </div>
+      </div>
+
+      <!-- Issue 3 -->
+      <div class="issue-row">
+        <svg class="issue-icon" width="16" height="16" viewBox="0 0 16 16"><path fill="#1f883d" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="#1f883d" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/></svg>
+        <div class="issue-content">
+          <div class="issue-title-line">
+            <span>As a user, I want to see detailed information and community comments for a specific gift.</span>
+            <span class="badge-label label-new">new</span>
+            <span class="badge-label label-backlog">backlog</span>
+          </div>
+          <div class="issue-meta">#3 opened 3 hours ago by kaleemullah1208</div>
+        </div>
+      </div>
+
+      <!-- Issue 4 -->
+      <div class="issue-row">
+        <svg class="issue-icon" width="16" height="16" viewBox="0 0 16 16"><path fill="#1f883d" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="#1f883d" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/></svg>
+        <div class="issue-content">
+          <div class="issue-title-line">
+            <span>As a new user, I want to register an account with secure password hashing so that my account is protected.</span>
+            <span class="badge-label label-new">new</span>
+            <span class="badge-label label-backlog">backlog</span>
+          </div>
+          <div class="issue-meta">#4 opened 2 hours ago by kaleemullah1208</div>
+        </div>
+      </div>
+
+      <!-- Issue 5 -->
+      <div class="issue-row">
+        <svg class="issue-icon" width="16" height="16" viewBox="0 0 16 16"><path fill="#1f883d" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="#1f883d" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/></svg>
+        <div class="issue-content">
+          <div class="issue-title-line">
+            <span>As a registered user, I want to log in and receive an authentication token to access gift details.</span>
+            <span class="badge-label label-new">new</span>
+            <span class="badge-label label-backlog">backlog</span>
+          </div>
+          <div class="issue-meta">#5 opened 2 hours ago by kaleemullah1208</div>
+        </div>
+      </div>
+
+      <!-- Issue 6 -->
+      <div class="issue-row">
+        <svg class="issue-icon" width="16" height="16" viewBox="0 0 16 16"><path fill="#1f883d" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="#1f883d" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/></svg>
+        <div class="issue-content">
+          <div class="issue-title-line">
+            <span>As a platform developer, I want to integrate sentiment analysis for feedback and reviews.</span>
+            <span class="badge-label label-new">new</span>
+            <span class="badge-label label-backlog">backlog</span>
+          </div>
+          <div class="issue-meta">#6 opened 2 hours ago by kaleemullah1208</div>
+        </div>
+      </div>
+
+      <!-- Issue 7 -->
+      <div class="issue-row">
+        <svg class="issue-icon" width="16" height="16" viewBox="0 0 16 16"><path fill="#1f883d" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="#1f883d" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/></svg>
+        <div class="issue-content">
+          <div class="issue-title-line">
+            <span>As a user, I want to search gifts by zipcode distance to locate nearby available donations.</span>
+            <span class="badge-label label-icebox">icebox</span>
+          </div>
+          <div class="issue-meta">#7 opened 1 hour ago by kaleemullah1208</div>
+        </div>
+      </div>
+
+      <!-- Issue 8 -->
+      <div class="issue-row">
+        <svg class="issue-icon" width="16" height="16" viewBox="0 0 16 16"><path fill="#1f883d" d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path fill="#1f883d" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0z"/></svg>
+        <div class="issue-content">
+          <div class="issue-title-line">
+            <span>Refactor MongoDB connection pooling and query caching for high traffic.</span>
+            <span class="badge-label label-techdebt">technical debt</span>
+          </div>
+          <div class="issue-meta">#8 opened 1 hour ago by kaleemullah1208</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
