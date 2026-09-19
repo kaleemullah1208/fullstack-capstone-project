@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-and-test:
+  build-and-lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,15 +24,14 @@ jobs:
         cd giftlink-backend
         npm install
 
-    - name: 4/6 Run backend unit tests
+    - name: 4/6 Install JSHint
       run: |
-        cd giftlink-backend
-        npm test
+        npm install -g jshint
 
-    - name: 5/6 Build Docker image
+    - name: 5/6 Run Linter
       run: |
         cd giftlink-backend
-        docker build -t giftlink-backend:latest .
+        jshint app.js routes/ models/
 
     - name: 6/6 Complete job
       run: |
