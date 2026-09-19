@@ -1,0 +1,5 @@
+Question 8:
+Submit the public GitHub URL of the giftlink-frontend/src/components/MainPage/MainPage.js file.
+
+URL:
+https://github.com/<your-github-username>/fullstack-capstone-project/blob/main/giftlink-frontend/src/components/MainPage/MainPage.js

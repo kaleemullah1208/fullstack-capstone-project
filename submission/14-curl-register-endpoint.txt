@@ -1,0 +1,17 @@
+Question 14:
+Copy and paste the cURL command and its output for the register endpoint.
+Note: Only the email address from the response is included as per lab instructions.
+
+Answer:
+curl --location 'http://localhost:3060/api/auth/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "firstName": "Lachlan",
+  "lastName": "Baker",
+  "email": "lachie@gmail.com",
+  "password": "lac123"
+}'
+
+{
+  "email": "lachie@gmail.com"
+}

@@ -1,0 +1,21 @@
+.register-card {
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.register-card .form-label {
+    font-weight: 600;
+}
+
+.register-card input {
+    border-radius: 0.35rem;
+}
+
+.register-card .btn-primary {
+    background-color: #0056b3;
+    border: none;
+}
+
+.register-card .btn-primary:hover {
+    background-color: #004494;
+}

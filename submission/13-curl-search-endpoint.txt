@@ -1,0 +1,20 @@
+Question 13:
+Copy and paste the cURL command and its output for the search endpoint.
+
+Answer:
+curl "http://localhost:3060/api/search?name=&age_years=6&category=Office&condition=Older"
+
+[
+  {
+    "id": "4",
+    "name": "Bookshelf",
+    "category": "Office",
+    "condition": "Older",
+    "posted_by": "David",
+    "zipcode": "10001",
+    "date_added": 1700003000,
+    "age_years": 4,
+    "description": "5-tier tall bookshelf in good sturdy condition with minor scuffs.",
+    "image": "https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?w=400"
+  }
+]

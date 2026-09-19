@@ -1,0 +1,39 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 1/6 Checkout code
+      uses: actions/checkout@v4
+
+    - name: 2/6 Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: 3/6 Install dependencies
+      run: |
+        cd giftlink-backend
+        npm install
+
+    - name: 4/6 Run backend unit tests
+      run: |
+        cd giftlink-backend
+        npm test
+
+    - name: 5/6 Build Docker image
+      run: |
+        cd giftlink-backend
+        docker build -t giftlink-backend:latest .
+
+    - name: 6/6 Complete job
+      run: |
+        echo "CI/CD Pipeline finished successfully with all 6/6 steps passing."

@@ -1,0 +1,24 @@
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.search-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+.search-card-img {
+    height: 160px;
+    object-fit: cover;
+}
+
+.filter-section {
+    background-color: #fafbfc;
+}

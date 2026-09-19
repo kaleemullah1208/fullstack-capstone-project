@@ -1,0 +1,122 @@
+[
+  {
+    "id": "1",
+    "name": "Desk Chair",
+    "category": "Office",
+    "condition": "Like New",
+    "posted_by": "Alice",
+    "zipcode": "10001",
+    "date_added": 1700000000,
+    "age_years": 1,
+    "description": "Ergonomic mesh desk chair with adjustable lumbar support.",
+    "image": "https://images.unsplash.com/photo-1580481077197-024564c76b4a?w=400"
+  },
+  {
+    "id": "2",
+    "name": "Dining Table",
+    "category": "Living",
+    "condition": "New",
+    "posted_by": "Bob",
+    "zipcode": "10002",
+    "date_added": 1700001000,
+    "age_years": 0,
+    "description": "Solid oak dining table that seats up to 6 people comfortably.",
+    "image": "https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?w=400"
+  },
+  {
+    "id": "3",
+    "name": "Coffee Table",
+    "category": "Living",
+    "condition": "Older",
+    "posted_by": "Charlie",
+    "zipcode": "10003",
+    "date_added": 1700002000,
+    "age_years": 5,
+    "description": "Vintage wooden coffee table with rustic metal frame accents.",
+    "image": "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?w=400"
+  },
+  {
+    "id": "4",
+    "name": "Bookshelf",
+    "category": "Office",
+    "condition": "Older",
+    "posted_by": "David",
+    "zipcode": "10001",
+    "date_added": 1700003000,
+    "age_years": 4,
+    "description": "5-tier tall bookshelf in good sturdy condition with minor scuffs.",
+    "image": "https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?w=400"
+  },
+  {
+    "id": "5",
+    "name": "Blender",
+    "category": "Kitchen",
+    "condition": "New",
+    "posted_by": "Emma",
+    "zipcode": "10004",
+    "date_added": 1700004000,
+    "age_years": 0,
+    "description": "High-power countertop blender, great for smoothies and soups.",
+    "image": "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=400"
+  },
+  {
+    "id": "6",
+    "name": "Toaster",
+    "category": "Kitchen",
+    "condition": "Like New",
+    "posted_by": "Frank",
+    "zipcode": "10005",
+    "date_added": 1700005000,
+    "age_years": 1,
+    "description": "Stainless steel 2-slice toaster with wide slots and browning dial.",
+    "image": "https://images.unsplash.com/photo-1583778176476-4a8b04a64771?w=400"
+  },
+  {
+    "id": "7",
+    "name": "Queen Bed Frame",
+    "category": "Bedroom",
+    "condition": "Older",
+    "posted_by": "Grace",
+    "zipcode": "10006",
+    "date_added": 1700006000,
+    "age_years": 4,
+    "description": "Upholstered queen bed frame with solid wooden slat support.",
+    "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=400"
+  },
+  {
+    "id": "8",
+    "name": "Nightstand",
+    "category": "Bedroom",
+    "condition": "Like New",
+    "posted_by": "Henry",
+    "zipcode": "10007",
+    "date_added": 1700007000,
+    "age_years": 2,
+    "description": "Modern white nightstand with two smooth-gliding drawers.",
+    "image": "https://images.unsplash.com/photo-1532372320572-cda25653a26d?w=400"
+  },
+  {
+    "id": "9",
+    "name": "Bath Towels Set",
+    "category": "Bathroom",
+    "condition": "New",
+    "posted_by": "Isabella",
+    "zipcode": "10008",
+    "date_added": 1700008000,
+    "age_years": 0,
+    "description": "Pack of 4 plush organic cotton bath towels in soft grey.",
+    "image": "https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=400"
+  },
+  {
+    "id": "10",
+    "name": "Shower Curtain",
+    "category": "Bathroom",
+    "condition": "New",
+    "posted_by": "Jack",
+    "zipcode": "10009",
+    "date_added": 1700009000,
+    "age_years": 0,
+    "description": "Waterproof fabric waffle-weave shower curtain with curtain hooks.",
+    "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400"
+  }
+]

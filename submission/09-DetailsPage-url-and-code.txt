@@ -1,0 +1,5 @@
+Question 9:
+Submit the public GitHub URL of the giftlink-frontend/src/components/DetailsPage/DetailsPage.js file.
+
+URL:
+https://github.com/<your-github-username>/fullstack-capstone-project/blob/main/giftlink-frontend/src/components/DetailsPage/DetailsPage.js

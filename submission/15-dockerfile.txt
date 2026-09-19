@@ -1,0 +1,17 @@
+Question 15:
+Share the code of your Dockerfile used for containerizing the application.
+
+Answer:
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 3060
+
+CMD ["npm", "start"]

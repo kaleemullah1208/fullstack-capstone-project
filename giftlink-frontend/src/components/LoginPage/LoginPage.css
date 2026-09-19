@@ -1,0 +1,21 @@
+.login-card {
+    background-color: #fff;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.login-card .form-label {
+    font-weight: 600;
+}
+
+.login-card input {
+    border-radius: 0.35rem;
+}
+
+.login-card .btn-primary {
+    background-color: #0056b3;
+    border: none;
+}
+
+.login-card .btn-primary:hover {
+    background-color: #004494;
+}
